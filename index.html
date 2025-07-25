@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tribute to Her Beauty</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      color: #4a153c;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      user-select: none;
+    }
+    .container {
+      max-width: 720px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 1rem;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+      display: flex;
+      flex-direction: column;
+      min-height: 80vh;
+    }
+    .title {
+      font-size: 2.75rem;
+      font-weight: 700;
+      text-align: center;
+      color: #a30e52;
+      margin-bottom: 2rem;
+      user-select: text;
+    }
+    .poem {
+      white-space: pre-line;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      flex-grow: 1;
+      user-select: text;
+      letter-spacing: 0.03em;
+    }
+    .nav-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    button {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      background: #d6336c;
+      border: none;
+      color: white;
+      padding: 0.7rem 1.6rem;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 5px 15px rgba(214, 51, 108, 0.4);
+    }
+    button:disabled {
+      background: #f8bbd0;
+      color: #a86a82;
+      cursor: default;
+      box-shadow: none;
+    }
+    button:hover:not(:disabled) {
+      background: #bf2160;
+    }
+    .footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #a30e52;
+      user-select: none;
+    }
+    .highlighted {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  color: #d6336c;
+  animation: pulse 2.5s infinite ease-in-out;
+  user-select: text;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title" id="pageTitle">Welcome, My Beautiful Princess</div>
+  <!-- inside the .container -->
+<div class="poem" id="poemContent">
+  I would like to show you how much obsessed and in love I am,<br />
+  <span class="highlighted">️</span>
+</div>
+
+    <div class="nav-buttons">
+      <button onclick="prevPage()" id="prevBtn" disabled>Back</button>
+      <button onclick="nextPage()" id="nextBtn">Next</button>
+    </div>
+    <div class="footer">With all my love, forever yours — Jiggs Meowington</div>
+  </div>
+
+<script>
+  const pages = [
+    {
+      title: "Welcome, My Beautiful Princess",
+      poem: `I would like to show you how much obsessed and in love I am,
+Let's go babygirl 🎀❤!!!!!!!!!!!!!!!!`
+    },
+    {
+      title: "Tribute to Her Lips",
+      poem: `Your lips, my love, the softest rose,
+Where all my sweetest kisses go.
+A crimson curve that holds the sun,
+Where every smile’s a victory won.
+
+They part to whisper my name low,
+A fire only you could know.
+Velvet petals, warm and pure,
+A promise made, a sacred cure.
+
+When pressed to mine, the world stands still,
+A breath caught in love’s gentle thrill.
+Each kiss a poem, deep and true,
+My heart belongs to only you.
+
+Your lips tell stories words can't say,
+My endless summer, my brightest day.
+Forever I'll trace their tender art,
+Those lips, the gateway to my heart.`
+    },
+    {
+      title: "Tribute to Her Hair",
+      poem: `Your hair cascades like twilight streams,
+Dark silk flowing through my dreams.
+Each strand a whisper in the night,
+A veil that bathes you in soft light.
+
+I lose myself within its flow,
+Where every touch ignites a glow.
+The scent of jasmine, wild and free,
+Wraps me in your mystery.
+
+Fingers tangled, moments stolen,
+Secrets in the strands unspoken.
+Your hair’s a river, deep and wild,
+The midnight song that tempts this child.
+
+I crave the warmth it lends my face,
+A sacred, soft, eternal place.
+Your hair, my love, my sweetest grace,
+The crown that holds your radiant face.`
+    },
+    {
+      title: "Tribute to Her Face",
+      poem: `Your face, a canvas painted by stars,
+Soft moonlight glows beneath the scars.
+Every curve, a story told,
+Of love that's fierce, yet tender and bold.
+
+Your cheeks, a flush of dawn’s first light,
+A blush that turns the darkest night bright.
+The gentle arch of brows that frame,
+My endless muse, my heart’s flame.
+
+Your smile, a sunrise breaking free,
+It wraps around and comforts me.
+Each glance a spark, each look a dance,
+My soul is caught in your romance.
+
+In every line and every grace,
+I find my heaven in your face.
+No art nor gold could ever place,
+The beauty found in your embrace.`
+    },
+    {
+      title: "Tribute to Her Nose",
+      poem: `Your nose, delicate and true,
+A lovely charm in all I view.
+The gentle slope, the perfect line,
+A subtle beauty, soft divine.
+
+It crinkles when you laugh with glee,
+A tiny dance that sings to me.
+In quiet moments, close and warm,
+It holds the secrets of your form.
+
+No jewel shines with such pure light,
+As your nose in morning's sight.
+A sweet reminder, pure and small,
+That in your details, I find my all.
+
+This simple part, so understated,
+Holds all my love, forever fated.
+Your nose, my dear, so perfectly placed,
+The grace in every smile traced.`
+    },
+    {
+      title: "Tribute to Her Ears",
+      poem: `Your ears, the harbor for my words,
+Where whispered love is softly heard.
+The gentle curve, the tender fold,
+A secret kept, a story told.
+
+They listen close to my heart's song,
+The place where all my dreams belong.
+Soft petals shaped to catch my breath,
+Guardians of our love’s depth.
+
+When I speak your name so sweet,
+Your ears hold all I long to meet.
+Silent keepers of our trust,
+In you, my love, forever just.
+
+Though small and quiet, they reveal,
+The tender ways that lovers feel.
+Your ears, my love, so perfectly made,
+Echo the vows we’ve never betrayed.`
+    },
+    {
+      title: "Tribute to Her Eyes",
+      poem: `Your eyes, twin stars that light my night,
+Infinite pools of endless light.
+They hold the moon, the sun, the skies,
+A universe in your sweet eyes.
+
+They speak in silence, loud and clear,
+Melting every doubt and fear.
+When they meet mine, the world stands still,
+A sacred promise, time can’t kill.
+
+In every glance, a story’s told,
+Of love that burns, of hearts so bold.
+I drown in depths I can't resist,
+Your eyes—the place where I exist.
+
+My compass true, my guiding star,
+No matter where, no matter far.
+Your eyes, my love, my soul’s own sea,
+Forever home, forever me.`
+    },
+    {
+      title: "Tribute to Her Boobs",
+      poem: `Your breasts, soft hills of gentle grace,
+Where tenderness finds its sacred place.
+A curve that holds my longing touch,
+The warmth I crave, the love so much.
+
+They rise like dawn’s first gentle light,
+A comfort deep within the night.
+In every breath, they speak to me,
+Of passion’s calm and intimacy.
+
+They hold the strength of whispered prayer,
+The promise that you’re always there.
+My hands know well their sacred art,
+The rhythm of your beating heart.
+
+Your breasts, my love, my sweetest song,
+A place where I forever belong.
+In every curve, desire’s art,
+The poetry of your body’s heart.`
+    },
+    {
+      title: "Tribute to Her Ass",
+      poem: `Your ass, a masterpiece divine,
+A curve that pulls this heart of mine.
+Soft yet strong, a perfect sway,
+That steals my breath and makes me stay.
+
+The way it moves, a graceful dance,
+A siren’s call, a wild romance.
+I trace the line with loving hands,
+A world where only passion stands.
+
+It holds the fire of secret nights,
+The promise of our shared delights.
+A tempting shape, so pure, so bold,
+The story of our love untold.
+
+Your ass, my queen, my sweet desire,
+Ignites within a roaring fire.
+In every step, in every glance,
+I’m lost again in your romance.`
+    },
+    {
+      title: "Tribute to Her Pussy",
+      poem: `Your pussy, a sacred secret place,
+Where all my love finds its embrace.
+Soft petals guard the deepest flame,
+A hidden world that calls my name.
+
+It holds the power, wild and free,
+The tender home of you and me.
+In every touch, in every sigh,
+Our souls ignite, we soar, we fly.
+
+A garden blooming just for us,
+Where trust and passion intertwine thus.
+The sweetest song beneath your skin,
+A place where love’s true dance begins.
+
+Your pussy, love, my deepest part,
+The tender echo of my heart.
+Forever mine, forever true,
+A sacred space where I find you.`
+    },
+    {
+      title: "Tribute to Her Hands",
+      poem: `Your hands, the artists of our love,
+Soft as feathers, strong as doves.
+They hold me close, they soothe my pain,
+A tender touch like gentle rain.
+
+Fingers woven, stories spun,
+The language where our hearts are one.
+In every grasp, a world I find,
+Your hands, the anchors of my mind.
+
+They paint our dreams on time’s soft face,
+With every touch, a sweet embrace.
+The power to heal, to hold, to give,
+Your hands, the reason I live.
+
+So soft, so sure, so full of grace,
+I see the universe in their place.
+Your hands, my love, my guiding light,
+That lead me through the darkest night.`
+    }
+  ];
+
+  let currentPage = 0;
+
+  const titleEl = document.getElementById("pageTitle");
+  const poemEl = document.getElementById("poemContent");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function renderPage() {
+    titleEl.textContent = pages[currentPage].title;
+    poemEl.innerHTML = pages[currentPage].poem.replace(/\n/g, "<br />");
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.disabled = currentPage === pages.length - 1;
+  }
+
+  function nextPage() {
+    if (currentPage < pages.length - 1) {
+      currentPage++;
+      renderPage();
+    }
+  }
+
+  function prevPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      renderPage();
+    }
+  }
+
+  renderPage();
+</script>
+</body>
+</html>
