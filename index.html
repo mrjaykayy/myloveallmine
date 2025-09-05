@@ -1,377 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tribute to Her Beauty</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  <title>For You 💌</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Pacifico&family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Playfair Display', serif;
-      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-      color: #4a153c;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      user-select: none;
+    :root{
+      --bg1:#e9f5ff;
+      --bg2:#fff5fb;
+      --cloud:#ffffff;
+      --ink:#5c6a79;
+      --accent:#7aaeff;
+      --accent2:#ffb7d5;
+      --shadow: rgba(0,0,0,.12);
+      --glass: rgba(255,255,255,.6);
     }
-    .container {
-      max-width: 720px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 1rem;
-      padding: 2.5rem 3rem;
-      box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
-      display: flex;
-      flex-direction: column;
-      min-height: 80vh;
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;}
+    body{
+      font-family:'Quicksand', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:var(--ink);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
     }
-    .title {
-      font-size: 2.75rem;
-      font-weight: 700;
-      text-align: center;
-      color: #a30e52;
-      margin-bottom: 2rem;
-      user-select: text;
-    }
-    .poem {
-      white-space: pre-line;
-      font-size: 1.15rem;
-      line-height: 1.9;
-      flex-grow: 1;
-      user-select: text;
-      letter-spacing: 0.03em;
-    }
-    .nav-buttons {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: space-between;
-    }
-    button {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      background: #d6336c;
-      border: none;
-      color: white;
-      padding: 0.7rem 1.6rem;
-      border-radius: 0.6rem;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 5px 15px rgba(214, 51, 108, 0.4);
-    }
-    button:disabled {
-      background: #f8bbd0;
-      color: #a86a82;
-      cursor: default;
-      box-shadow: none;
-    }
-    button:hover:not(:disabled) {
-      background: #bf2160;
-    }
-    .footer {
-      margin-top: 2.5rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #a30e52;
-      user-select: none;
-    }
-    .highlighted {
-  display: block;
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-top: 1rem;
-  color: #d6336c;
-  animation: pulse 2.5s infinite ease-in-out;
-  user-select: text;
-  text-align: center;
-  letter-spacing: 0.05em;
-}
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.85; }
-}
+    .sky{position:fixed; inset:0; overflow:hidden;}
+    .cloud{position:absolute; background:var(--cloud); opacity:.9; filter: drop-shadow(0 6px 16px var(--shadow)); border-radius:50px}
+    .cloud:before, .cloud:after{content:""; position:absolute; background:inherit; border-radius:inherit}
+    .cloud.small{width:180px;height:70px; top:12%; left:-220px; animation: drift 40s linear infinite}
+    .cloud.small:before{width:70px;height:70px; left:30px; top:-30px}
+    .cloud.small:after{width:110px;height:90px; right:10px; top:-15px}
+    .cloud.big{width:300px;height:100px; bottom:18%; left:-360px; animation: drift 60s linear infinite 10s}
+    .cloud.big:before{width:100px;height:100px; left:40px; top:-40px}
+    .cloud.big:after{width:150px;height:120px; right:20px; top:-20px}
+    @keyframes drift{to{transform:translateX(140vw)}}
 
+    .sparkle{position:absolute; width:8px; height:8px; border-radius:50%; background:var(--accent); opacity:.8; animation: floatUp 10s ease-in infinite; filter: blur(.2px)}
+    .sparkle.heart{width:10px;height:10px; background:transparent}
+    .sparkle.heart:before,.sparkle.heart:after{content:""; position:absolute; width:6px;height:9px; background:var(--accent2); border-radius:6px 6px 0 0; transform:rotate(-45deg); left:2px; top:3px}
+    .sparkle.heart:after{left:0; transform:rotate(45deg)}
+    @keyframes floatUp{0%{transform:translateY(10vh) scale(.7); opacity:0} 15%{opacity:.9} 100%{transform:translateY(-90vh) scale(1); opacity:0}}
+
+    .wrap{position:relative; min-height:100vh; display:grid; place-items:center; padding: 40px 16px;}
+    .card{position:relative; width:min(880px, 94vw); background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78)); backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.6); border-radius:28px; box-shadow:0 10px 30px var(--shadow); overflow:hidden}
+    .card-header{display:flex; align-items:center; gap:14px; padding:18px 20px; background:rgba(255,255,255,.65); border-bottom:1px solid rgba(0,0,0,.04)}
+    .dot{width:12px;height:12px;border-radius:50%}
+    .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+    .title{font-family:'Baloo 2', cursive; font-size:clamp(18px, 2.2vw, 26px)}
+
+    .stage{position:relative; padding:28px}
+    .note{font-size:clamp(16px,1.6vw,20px); line-height:1.6; text-align:center; margin:6px auto 22px; max-width:680px}
+
+    .btn{display:inline-flex; align-items:center; gap:10px; background:linear-gradient(180deg, #ffffff, #f4f7ff); border:2px solid #d9e7ff; color:#3a5a96; padding:12px 18px; border-radius:16px; box-shadow:0 6px 0 #bdd0ff, 0 10px 20px var(--shadow); font-weight:700; text-decoration:none; cursor:pointer; transition:.18s transform, .18s box-shadow}
+    .btn:hover{transform:translateY(-2px); box-shadow:0 8px 0 #bdd0ff, 0 14px 28px var(--shadow)}
+    .btn:active{transform:translateY(3px); box-shadow:0 2px 0 #bdd0ff, 0 6px 14px var(--shadow)}
+
+    .cinnabg{position:absolute; inset:0; display:grid; place-items:center; pointer-events:none}
+    .cinnawrap{width:min(360px, 70vw); aspect-ratio:1/1; position:relative}
+    .float{animation: bob 4s ease-in-out infinite}
+    @keyframes bob{0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)}}
+    .earL, .earR{transform-origin: center}
+    .earL{animation: flapL 2.6s ease-in-out infinite .2s}
+    .earR{animation: flapR 2.6s ease-in-out infinite}
+    @keyframes flapL{0%,100%{transform:rotate(0)} 50%{transform:rotate(-6deg)}}
+    @keyframes flapR{0%,100%{transform:rotate(0)} 50%{transform:rotate(6deg)}}
+    .blush{opacity:.7}
+
+    .popup{position:fixed; inset:0; display:none; place-items:center; z-index:50}
+    .popup.active{display:grid}
+    .win{width:min(560px, 94vw); background:var(--glass); backdrop-filter: blur(12px); border:2px solid rgba(255,255,255,.9); border-radius:22px; box-shadow:0 20px 40px var(--shadow); overflow:hidden; animation: pop .22s ease-out}
+    @keyframes pop{from{transform:scale(.95); opacity:0} to{transform:scale(1); opacity:1}}
+    .winHead{display:flex; gap:8px; align-items:center; padding:12px 14px; background:rgba(255,255,255,.85); border-bottom:1px solid rgba(0,0,0,.04)}
+    .winBody{padding:18px 20px 22px}
+    .h1{font-family:'Pacifico', cursive; font-size:28px; margin:8px 0 8px; color:#3a5a96}
+    .p{font-size:16px; line-height:1.8}
+    .actions{display:flex; justify-content:flex-end; gap:10px; margin-top:16px}
+    .chip{padding:8px 14px; border-radius:999px; border:2px solid #d9e7ff; background:#fff; font-weight:700; cursor:pointer}
+
+    footer{padding:20px 18px 34px; text-align:center; font-size:14px; opacity:.95}
+    .signature{font-family:'Pacifico', cursive; font-size:20px}
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="title" id="pageTitle">Welcome, My Beautiful Princess</div>
-  <!-- inside the .container -->
-<div class="poem" id="poemContent">
-  I would like to show you how much obsessed and in love I am,<br />
-  <span class="highlighted">️</span>
-</div>
-
-    <div class="nav-buttons">
-      <button onclick="prevPage()" id="prevBtn" disabled>Back</button>
-      <button onclick="nextPage()" id="nextBtn">Next</button>
-    </div>
-    <div class="footer">With all my love, forever yours — Jiggs Meowington</div>
+  <div class="sky" aria-hidden="true">
+    <div class="cloud small"></div>
+    <div class="cloud big"></div>
   </div>
 
-<script>
-  const pages = [
-    {
-      title: "Welcome, My Beautiful Princess",
-      poem: `I would like to show you how much obsessed and in love I am,
-Let's go babygirl 🎀❤!!!!!!!!!!!!!!!!`
-    },
-    {
-      title: "Tribute to Her Lips",
-      poem: `Your lips, my love, the softest rose,
-Where all my sweetest kisses go.
-A crimson curve that holds the sun,
-Where every smile’s a victory won.
+  <div class="wrap">
+    <div class="card">
+      <div class="card-header">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="title">For my favorite person</div>
+      </div>
+      <div class="stage">
+        <div class="note">I made you a tiny sky, a floating puppy, and a stack of letters. Open them whenever you want. I’m sorry and I love you.</div>
+        <div class="cinnabg">
+          <div class="cinnawrap float">
+            <svg viewBox="0 0 300 300" width="100%" height="100%" aria-label="Cinnamoroll-inspired puppy">
+              <g class="earL"><ellipse cx="60" cy="145" rx="70" ry="28" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/></g>
+              <g class="earR"><ellipse cx="240" cy="145" rx="70" ry="28" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/></g>
+              <ellipse cx="150" cy="140" rx="78" ry="60" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/>
+              <circle cx="125" cy="140" r="6" fill="#7aaeff" />
+              <circle cx="175" cy="140" r="6" fill="#7aaeff" />
+              <path d="M140 155 q10 10 20 0" fill="none" stroke="#7aaeff" stroke-width="4" stroke-linecap="round"/>
+              <ellipse class="blush" cx="108" cy="150" rx="10" ry="6" fill="#ffb7d5"/>
+              <ellipse class="blush" cx="192" cy="150" rx="10" ry="6" fill="#ffb7d5"/>
+              <ellipse cx="150" cy="195" rx="46" ry="32" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/>
+              <circle cx="132" cy="210" r="6" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/>
+              <circle cx="168" cy="210" r="6" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/>
+            </svg>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:10px;">
+          <button class="btn" id="openLetters" aria-haspopup="dialog">Open the letters</button>
+        </div>
+      </div>
+      <footer>
+        Made with clouds, cookies, and courage — <span class="signature">by me, for you</span>
+      </footer>
+    </div>
+  </div>
 
-They part to whisper my name low,
-A fire only you could know.
-Velvet petals, warm and pure,
-A promise made, a sacred cure.
+  <div class="popup" id="popup">
+    <div class="win" role="dialog" aria-modal="true" aria-labelledby="wtitle">
+      <div class="winHead">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div id="wtitle" class="title">Letter <span id="idx">1</span>/<span id="total">1</span></div>
+      </div>
+      <div class="winBody">
+        <div class="h1" id="headline">Letter</div>
+        <div class="p" id="bodytext"></div>
+        <div class="actions">
+          <button class="chip" id="prevBtn">Back</button>
+          <button class="chip" id="nextBtn">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-When pressed to mine, the world stands still,
-A breath caught in love’s gentle thrill.
-Each kiss a poem, deep and true,
-My heart belongs to only you.
+  <script>
+    // Apology letters plus extras, written in a natural human voice
+    const letters = [
+      {h: "I am sorry, love", p: "About the knuckle thing. I should have thought before I let someone touch me like that. I know it made you feel upset and I hate that I caused that feeling."},
+      {h: "You come first", p: "You always come first to me. I should have protected what we have better. I will not let anyone cross that line again."},
+      {h: "I was careless", p: "I let it happen and I regret it. I never want to make you feel small. I will do better and pay attention to what matters to you."},
+      {h: "My promise to you", p: "If there is ever a doubt, I will pick you. I mean it. I want you to feel safe with me always."},
+      {h: "Please forgive me", p: "I hate that I hurt you. Tell me how I can make this up to you and I will do it with all my heart."},
+      {h: "Thank you for loving me", p: "Thank you for loving me even when I mess up. Your love makes me try to be better each day."},
+      {h: "You are my world", p: "You are my world. I can not imagine a life without you in it. Every plan I make has you in it."},
+      {h: "I think about you", p: "Every moment I think about you, sometimes until it feels unhealthy. That only shows how much you mean to me and how much of my heart you hold."},
+      {h: "Silly but true", p: "Sometimes I feel like a dog that only wants food. In this case the food is you. I love you that much and I am not ashamed of it."},
+      {h: "You are perfect to me", p: "I love your eyes, your lips, your laugh and everything about you. Even when you feel insecure, I see someone perfect and I will keep reminding you until you believe it."},
+      // final big letter as the last item, includes paragraphs
+      {h: "Always yours", p: `<p>I just want to say from the bottom of my heart that you are my whole world. I can not imagine waking up and not having you in my life. Thank you for loving me in ways I do not always deserve. Thank you for being my shelter when things feel messy.</p>
+        <p>Some days I think about you so much it becomes all I can think about. Sometimes that feels a little unhealthy, but I think that only proves how deep this is. My thoughts go to your eyes, the way your lips move when you smile, the little things you do that make me fall again and again.</p>
+        <p>I know I make mistakes. I know I have moments when I am careless. I am sorry for hurting you and I will work on being more thoughtful. You mean everything to me and I would move mountains to keep your heart safe.</p>
+        <p>Always yours,</p>
+        <p>💌</p>`}
+    ];
 
-Your lips tell stories words can't say,
-My endless summer, my brightest day.
-Forever I'll trace their tender art,
-Those lips, the gateway to my heart.`
-    },
-    {
-      title: "Tribute to Her Hair",
-      poem: `Your hair cascades like twilight streams,
-Dark silk flowing through my dreams.
-Each strand a whisper in the night,
-A veil that bathes you in soft light.
+    // popup logic
+    const popup = document.getElementById('popup');
+    const openBtn = document.getElementById('openLetters');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const headline = document.getElementById('headline');
+    const bodytext = document.getElementById('bodytext');
+    const idxEl = document.getElementById('idx');
+    const totalEl = document.getElementById('total');
 
-I lose myself within its flow,
-Where every touch ignites a glow.
-The scent of jasmine, wild and free,
-Wraps me in your mystery.
+    let i = 0; totalEl.textContent = letters.length;
 
-Fingers tangled, moments stolen,
-Secrets in the strands unspoken.
-Your hair’s a river, deep and wild,
-The midnight song that tempts this child.
-
-I crave the warmth it lends my face,
-A sacred, soft, eternal place.
-Your hair, my love, my sweetest grace,
-The crown that holds your radiant face.`
-    },
-    {
-      title: "Tribute to Her Face",
-      poem: `Your face, a canvas painted by stars,
-Soft moonlight glows beneath the scars.
-Every curve, a story told,
-Of love that's fierce, yet tender and bold.
-
-Your cheeks, a flush of dawn’s first light,
-A blush that turns the darkest night bright.
-The gentle arch of brows that frame,
-My endless muse, my heart’s flame.
-
-Your smile, a sunrise breaking free,
-It wraps around and comforts me.
-Each glance a spark, each look a dance,
-My soul is caught in your romance.
-
-In every line and every grace,
-I find my heaven in your face.
-No art nor gold could ever place,
-The beauty found in your embrace.`
-    },
-    {
-      title: "Tribute to Her Nose",
-      poem: `Your nose, delicate and true,
-A lovely charm in all I view.
-The gentle slope, the perfect line,
-A subtle beauty, soft divine.
-
-It crinkles when you laugh with glee,
-A tiny dance that sings to me.
-In quiet moments, close and warm,
-It holds the secrets of your form.
-
-No jewel shines with such pure light,
-As your nose in morning's sight.
-A sweet reminder, pure and small,
-That in your details, I find my all.
-
-This simple part, so understated,
-Holds all my love, forever fated.
-Your nose, my dear, so perfectly placed,
-The grace in every smile traced.`
-    },
-    {
-      title: "Tribute to Her Ears",
-      poem: `Your ears, the harbor for my words,
-Where whispered love is softly heard.
-The gentle curve, the tender fold,
-A secret kept, a story told.
-
-They listen close to my heart's song,
-The place where all my dreams belong.
-Soft petals shaped to catch my breath,
-Guardians of our love’s depth.
-
-When I speak your name so sweet,
-Your ears hold all I long to meet.
-Silent keepers of our trust,
-In you, my love, forever just.
-
-Though small and quiet, they reveal,
-The tender ways that lovers feel.
-Your ears, my love, so perfectly made,
-Echo the vows we’ve never betrayed.`
-    },
-    {
-      title: "Tribute to Her Eyes",
-      poem: `Your eyes, twin stars that light my night,
-Infinite pools of endless light.
-They hold the moon, the sun, the skies,
-A universe in your sweet eyes.
-
-They speak in silence, loud and clear,
-Melting every doubt and fear.
-When they meet mine, the world stands still,
-A sacred promise, time can’t kill.
-
-In every glance, a story’s told,
-Of love that burns, of hearts so bold.
-I drown in depths I can't resist,
-Your eyes—the place where I exist.
-
-My compass true, my guiding star,
-No matter where, no matter far.
-Your eyes, my love, my soul’s own sea,
-Forever home, forever me.`
-    },
-    {
-      title: "Tribute to Her Boobs",
-      poem: `Your breasts, soft hills of gentle grace,
-Where tenderness finds its sacred place.
-A curve that holds my longing touch,
-The warmth I crave, the love so much.
-
-They rise like dawn’s first gentle light,
-A comfort deep within the night.
-In every breath, they speak to me,
-Of passion’s calm and intimacy.
-
-They hold the strength of whispered prayer,
-The promise that you’re always there.
-My hands know well their sacred art,
-The rhythm of your beating heart.
-
-Your breasts, my love, my sweetest song,
-A place where I forever belong.
-In every curve, desire’s art,
-The poetry of your body’s heart.`
-    },
-    {
-      title: "Tribute to Her Ass",
-      poem: `Your ass, a masterpiece divine,
-A curve that pulls this heart of mine.
-Soft yet strong, a perfect sway,
-That steals my breath and makes me stay.
-
-The way it moves, a graceful dance,
-A siren’s call, a wild romance.
-I trace the line with loving hands,
-A world where only passion stands.
-
-It holds the fire of secret nights,
-The promise of our shared delights.
-A tempting shape, so pure, so bold,
-The story of our love untold.
-
-Your ass, my queen, my sweet desire,
-Ignites within a roaring fire.
-In every step, in every glance,
-I’m lost again in your romance.`
-    },
-    {
-      title: "Tribute to Her Pussy",
-      poem: `Your pussy, a sacred secret place,
-Where all my love finds its embrace.
-Soft petals guard the deepest flame,
-A hidden world that calls my name.
-
-It holds the power, wild and free,
-The tender home of you and me.
-In every touch, in every sigh,
-Our souls ignite, we soar, we fly.
-
-A garden blooming just for us,
-Where trust and passion intertwine thus.
-The sweetest song beneath your skin,
-A place where love’s true dance begins.
-
-Your pussy, love, my deepest part,
-The tender echo of my heart.
-Forever mine, forever true,
-A sacred space where I find you.`
-    },
-    {
-      title: "Tribute to Her Hands",
-      poem: `Your hands, the artists of our love,
-Soft as feathers, strong as doves.
-They hold me close, they soothe my pain,
-A tender touch like gentle rain.
-
-Fingers woven, stories spun,
-The language where our hearts are one.
-In every grasp, a world I find,
-Your hands, the anchors of my mind.
-
-They paint our dreams on time’s soft face,
-With every touch, a sweet embrace.
-The power to heal, to hold, to give,
-Your hands, the reason I live.
-
-So soft, so sure, so full of grace,
-I see the universe in their place.
-Your hands, my love, my guiding light,
-That lead me through the darkest night.`
+    function render(){
+      const item = letters[i];
+      headline.textContent = item.h;
+      // allow paragraphs in last letter
+      bodytext.innerHTML = item.p;
+      idxEl.textContent = (i+1);
+      // update button text
+      if(i === letters.length - 1){ nextBtn.textContent = 'Close'; } else { nextBtn.textContent = 'Next'; }
     }
-  ];
 
-  let currentPage = 0;
+    function open(){ popup.classList.add('active'); render(); }
+    function close(){ popup.classList.remove('active'); }
 
-  const titleEl = document.getElementById("pageTitle");
-  const poemEl = document.getElementById("poemContent");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
+    openBtn.addEventListener('click', open);
 
-  function renderPage() {
-    titleEl.textContent = pages[currentPage].title;
-    poemEl.innerHTML = pages[currentPage].poem.replace(/\n/g, "<br />");
-    prevBtn.disabled = currentPage === 0;
-    nextBtn.disabled = currentPage === pages.length - 1;
-  }
+    nextBtn.addEventListener('click', ()=>{
+      if(i < letters.length - 1){ i = i + 1; render(); if(i === letters.length - 1){ setTimeout(() => confetti(), 120); } }
+      else { close(); }
+    });
 
-  function nextPage() {
-    if (currentPage < pages.length - 1) {
-      currentPage++;
-      renderPage();
+    prevBtn.addEventListener('click', ()=>{ i = Math.max(0, i-1); render(); });
+
+    popup.addEventListener('click', (e)=>{ if(e.target === popup) close(); });
+
+    // floating sparkles & hearts from before
+    function spawnFloating(){
+      const sky = document.querySelector('.sky');
+      if(!sky) return;
+      const n = 12;
+      for(let k=0;k<n;k++){
+        const el = document.createElement('div');
+        el.className = Math.random() > 0.5 ? 'sparkle heart' : 'sparkle';
+        el.style.left = Math.random()*100 + 'vw';
+        el.style.bottom = (-10 + Math.random()*20) + 'vh';
+        el.style.animationDelay = (Math.random()*8)+'s';
+        el.style.opacity = .5 + Math.random()*.5;
+        el.style.transform = `scale(${.6+Math.random()*.9})`;
+        sky.appendChild(el);
+        setTimeout(()=> el.remove(), 10000);
+      }
     }
-  }
+    setInterval(spawnFloating, 1400);
+    spawnFloating();
 
-  function prevPage() {
-    if (currentPage > 0) {
-      currentPage--;
-      renderPage();
+    // confetti for final letter
+    function confetti(){
+      for(let k=0;k<36;k++){
+        const s = document.createElement('div');
+        s.className = Math.random() > 0.5 ? 'sparkle heart' : 'sparkle';
+        s.style.left = (50 + (Math.random()*30 - 15)) + 'vw';
+        s.style.bottom = (30 + Math.random()*20) + 'vh';
+        s.style.animationDuration = (6 + Math.random()*4) + 's';
+        document.body.appendChild(s);
+        setTimeout(()=> s.remove(), 11000);
+      }
     }
-  }
 
-  renderPage();
-</script>
+    // accessibility
+    openBtn.addEventListener('keyup', (e)=>{ if(e.key === 'Enter' || e.key === ' ') open(); });
+
+  </script>
 </body>
 </html>
