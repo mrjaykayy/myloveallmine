@@ -1,240 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Love you, mwaaahhhhh 💌</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Pacifico&family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg1:#e9f5ff;
-      --bg2:#fff5fb;
-      --cloud:#ffffff;
-      --ink:#5c6a79;
-      --accent:#7aaeff;
-      --accent2:#ffb7d5;
-      --shadow: rgba(0,0,0,.12);
-      --glass: rgba(255,255,255,.6);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%;}
-    body{
-      font-family:'Quicksand', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      color:var(--ink);
-      background: linear-gradient(135deg, var(--bg1), var(--bg2));
-      overflow-x:hidden;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>For My Cutie 💖 – Pop‑Up Letters</title>
+<style>
+  :root{
+    --pink:#ff6fa3;
+    --rose:#f48fb1;
+    --blush:#ffd9ec;
+    --cream:#fff7fb;
+    --ink:#3b2b30;
+    --shadow:#f8bbd0;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:'Quicksand', 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui, -apple-system, sans-serif;
+    background:linear-gradient(180deg,#ffe6f0,#ffd9ec,#ffe6f7);
+    overflow-x:hidden;
+    text-align:center;
+    color:var(--ink);
+  }
+  .floating{position:fixed;font-size:2rem;opacity:.75;animation:floatUp linear infinite;z-index:0}
+  @keyframes floatUp{0%{transform:translateY(100vh) scale(1);opacity:0}20%{opacity:1}100%{transform:translateY(-10vh) scale(1.15);opacity:0}}
 
-    .sky{position:fixed; inset:0; overflow:hidden;}
-    .cloud{position:absolute; background:var(--cloud); opacity:.9; filter: drop-shadow(0 6px 16px var(--shadow)); border-radius:50px}
-    .cloud:before, .cloud:after{content:""; position:absolute; background:inherit; border-radius:inherit}
-    .cloud.small{width:180px;height:70px; top:12%; left:-220px; animation: drift 40s linear infinite}
-    .cloud.small:before{width:70px;height:70px; left:30px; top:-30px}
-    .cloud.small:after{width:110px;height:90px; right:10px; top:-15px}
-    .cloud.big{width:300px;height:100px; bottom:18%; left:-360px; animation: drift 60s linear infinite 10s}
-    .cloud.big:before{width:100px;height:100px; left:40px; top:-40px}
-    .cloud.big:after{width:150px;height:120px; right:20px; top:-20px}
-    @keyframes drift{to{transform:translateX(140vw)}}
+  .container{position:relative;z-index:5;padding:24px 16px;max-width:980px;margin:0 auto}
+  h1{font-size:2.2rem;color:#e91e63;text-shadow:2px 2px #fff;margin:10px 0 6px;animation:pop .6s ease}
+  p.lead{margin:0 0 10px}
+  @keyframes pop{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
 
-    .sparkle{position:absolute; width:8px; height:8px; border-radius:50%; background:var(--accent); opacity:.8; animation: floatUp 10s ease-in infinite; filter: blur(.2px)}
-    .sparkle.heart{width:10px;height:10px; background:transparent}
-    .sparkle.heart:before,.sparkle.heart:after{content:""; position:absolute; width:6px;height:9px; background:var(--accent2); border-radius:6px 6px 0 0; transform:rotate(-45deg); left:2px; top:3px}
-    .sparkle.heart:after{left:0; transform:rotate(45deg)}
-    @keyframes floatUp{0%{transform:translateY(10vh) scale(.7); opacity:0} 15%{opacity:.9} 100%{transform:translateY(-90vh) scale(1); opacity:0}}
+  .characters{display:flex;justify-content:center;gap:28px;margin-top:16px;flex-wrap:wrap}
+  .characters svg{width:140px;height:auto;transition:transform .3s;filter:drop-shadow(0 4px 0 var(--shadow))}
+  .characters svg:hover{transform:scale(1.08) rotate(2deg)}
 
-    .wrap{position:relative; min-height:100vh; display:grid; place-items:center; padding: 40px 16px;}
-    .card{position:relative; width:min(880px, 94vw); background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78)); backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.6); border-radius:28px; box-shadow:0 10px 30px var(--shadow); overflow:hidden}
-    .card-header{display:flex; align-items:center; gap:14px; padding:18px 20px; background:rgba(255,255,255,.65); border-bottom:1px solid rgba(0,0,0,.04)}
-    .dot{width:12px;height:12px;border-radius:50%}
-    .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
-    .title{font-family:'Baloo 2', cursive; font-size:clamp(18px, 2.2vw, 26px)}
+  .phase-buttons{margin:22px auto 10px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+  .phase-buttons button{padding:12px 18px;background:#fff;border:3px solid var(--rose);border-radius:16px;font-size:1rem;cursor:pointer;color:#e91e63;font-weight:700;box-shadow:3px 3px 0 var(--shadow);transition:all .2s}
+  .phase-buttons button:hover{background:var(--shadow);color:#fff;transform:translateY(-2px) scale(1.03)}
 
-    .stage{position:relative; padding:28px}
-    .note{font-size:clamp(16px,1.6vw,20px); line-height:1.6; text-align:center; margin:6px auto 22px; max-width:680px}
+  /* Modal / Popup */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.25);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+  .overlay.show{display:flex}
+  .modal{width:min(680px,92vw);background:var(--cream);border:4px solid var(--rose);border-radius:22px;box-shadow:8px 8px 0 var(--shadow);padding:18px 16px 12px;animation:slideIn .35s ease}
+  @keyframes slideIn{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .modal h2{margin:0 0 4px;color:#e91e63}
+  .poemText{white-space:pre-line;text-align:left;background:#fff;border:3px dashed var(--shadow);border-radius:14px;padding:14px 12px;font-size:1rem;line-height:1.6}
+  .controls{display:flex;align-items:center;justify-content:space-between;margin:10px 0 0}
+  .controls .left, .controls .right{display:flex;gap:8px}
+  .chip{font-size:.9rem;background:#fff;border:2px solid var(--rose);border-radius:999px;padding:6px 10px;color:#e91e63;box-shadow:2px 2px 0 var(--shadow)}
+  .btn{border:none;border-radius:12px;padding:9px 14px;cursor:pointer;font-weight:800;background:var(--shadow);color:#fff;box-shadow:3px 3px 0 #eaa1bf;transition:transform .12s}
+  .btn:hover{transform:translateY(-1px)}
+  .closeX{background:transparent;border:none;font-size:1.3rem;cursor:pointer;color:#e91e63}
 
-    .btn{display:inline-flex; align-items:center; gap:10px; background:linear-gradient(180deg, #ffffff, #f4f7ff); border:2px solid #d9e7ff; color:#3a5a96; padding:12px 18px; border-radius:16px; box-shadow:0 6px 0 #bdd0ff, 0 10px 20px var(--shadow); font-weight:700; text-decoration:none; cursor:pointer; transition:.18s transform, .18s box-shadow}
-    .btn:hover{transform:translateY(-2px); box-shadow:0 8px 0 #bdd0ff, 0 14px 28px var(--shadow)}
-    .btn:active{transform:translateY(3px); box-shadow:0 2px 0 #bdd0ff, 0 6px 14px var(--shadow)}
-
-    .cinnabg{position:absolute; inset:0; display:grid; place-items:center; pointer-events:none}
-    .cinnawrap{width:min(360px, 70vw); aspect-ratio:1/1; position:relative}
-    .float{animation: bob 4s ease-in-out infinite}
-    @keyframes bob{0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)}}
-    .earL, .earR{transform-origin: center}
-    .earL{animation: flapL 2.6s ease-in-out infinite .2s}
-    .earR{animation: flapR 2.6s ease-in-out infinite}
-    @keyframes flapL{0%,100%{transform:rotate(0)} 50%{transform:rotate(-6deg)}}
-    @keyframes flapR{0%,100%{transform:rotate(0)} 50%{transform:rotate(6deg)}}
-    .blush{opacity:.7}
-
-    .popup{position:fixed; inset:0; display:none; place-items:center; z-index:50}
-    .popup.active{display:grid}
-    .win{width:min(560px, 94vw); background:var(--glass); backdrop-filter: blur(12px); border:2px solid rgba(255,255,255,.9); border-radius:22px; box-shadow:0 20px 40px var(--shadow); overflow:hidden; animation: pop .22s ease-out}
-    @keyframes pop{from{transform:scale(.95); opacity:0} to{transform:scale(1); opacity:1}}
-    .winHead{display:flex; gap:8px; align-items:center; padding:12px 14px; background:rgba(255,255,255,.85); border-bottom:1px solid rgba(0,0,0,.04)}
-    .winBody{padding:18px 20px 22px}
-    .h1{font-family:'Pacifico', cursive; font-size:28px; margin:8px 0 8px; color:#3a5a96}
-    .p{font-size:16px; line-height:1.8}
-    .actions{display:flex; justify-content:flex-end; gap:10px; margin-top:16px}
-    .chip{padding:8px 14px; border-radius:999px; border:2px solid #d9e7ff; background:#fff; font-weight:700; cursor:pointer}
-
-    footer{padding:20px 18px 34px; text-align:center; font-size:14px; opacity:.95}
-    .signature{font-family:'Pacifico', cursive; font-size:20px}
-  </style>
+  .footer-note{margin-top:6px;color:#e91e63;font-size:.9rem}
+</style>
 </head>
 <body>
-  <div class="sky" aria-hidden="true">
-    <div class="cloud small"></div>
-    <div class="cloud big"></div>
+<script>
+  const doodles = ["🌸","💖","✨","💕","🌼","⭐"]; // floating emojis
+  for (let i = 0; i < 28; i++) {
+    const span = document.createElement("span");
+    span.textContent = doodles[Math.floor(Math.random()*doodles.length)];
+    span.className = "floating";
+    span.style.left = Math.random()*100 + "vw";
+    span.style.animationDuration = (8+Math.random()*12) + "s";
+    span.style.fontSize = (20+Math.random()*20) + "px";
+    document.body.appendChild(span);
+  }
+</script>
+
+<div class="container">
+  <div class="characters" aria-hidden="true">
+    <!-- Hello Kitty (cute, soft gradients) -->
+    <svg viewBox="0 0 200 200" role="img" aria-label="Hello Kitty">
+      <defs>
+        <radialGradient id="faceG" cx="50%" cy="45%" r="60%">
+          <stop offset="0%" stop-color="#fff"/>
+          <stop offset="100%" stop-color="#ffeef7"/>
+        </radialGradient>
+        <linearGradient id="bowG" x1="0" x2="1">
+          <stop offset="0%" stop-color="#ff4f8c"/>
+          <stop offset="100%" stop-color="#ff7fb0"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="100" cy="100" rx="72" ry="62" fill="url(#faceG)" stroke="#222" stroke-width="2"/>
+      <!-- Ears -->
+      <path d="M45 55 L60 20 L77 55" fill="#fff" stroke="#222" stroke-width="2"/>
+      <path d="M123 55 L140 20 L155 55" fill="#fff" stroke="#222" stroke-width="2"/>
+      <!-- Eyes & whiskers -->
+      <circle cx="75" cy="95" r="5" fill="#111"/>
+      <circle cx="125" cy="95" r="5" fill="#111"/>
+      <g stroke="#111" stroke-width="2" stroke-linecap="round">
+        <line x1="52" y1="98" x2="30" y2="92"/>
+        <line x1="52" y1="105" x2="28" y2="108"/>
+        <line x1="52" y1="112" x2="30" y2="124"/>
+        <line x1="148" y1="98" x2="170" y2="92"/>
+        <line x1="148" y1="105" x2="172" y2="108"/>
+        <line x1="148" y1="112" x2="170" y2="124"/>
+      </g>
+      <!-- Nose & mouth -->
+      <ellipse cx="100" cy="110" rx="6" ry="4" fill="#ffc35a"/>
+      <path d="M90 122 q10 8 20 0" stroke="#222" stroke-width="2" fill="none"/>
+      <!-- Bow -->
+      <circle cx="120" cy="62" r="8" fill="#ff92bf" stroke="#7a1840"/>
+      <path d="M111 53 q-18 -10 -26 8 q8 18 26 8 z" fill="url(#bowG)" stroke="#7a1840"/>
+      <path d="M129 53 q18 -10 26 8 q-8 18 -26 8 z" fill="url(#bowG)" stroke="#7a1840"/>
+    </svg>
+
+    <!-- Labubu (soft plush style) -->
+    <svg viewBox="0 0 200 200" role="img" aria-label="Labubu">
+      <defs>
+        <radialGradient id="furG" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#fffaf3"/>
+          <stop offset="100%" stop-color="#fff0d6"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="100" cy="110" rx="70" ry="64" fill="url(#furG)" stroke="#333"/>
+      <path d="M50 60 L65 18 L82 60" fill="#fff6e6" stroke="#333"/>
+      <path d="M118 60 L135 18 L150 60" fill="#fff6e6" stroke="#333"/>
+      <circle cx="80" cy="105" r="6" fill="#222"/>
+      <circle cx="120" cy="105" r="6" fill="#222"/>
+      <ellipse cx="100" cy="125" rx="6" ry="4" fill="#ffcf5a"/>
+      <path d="M78 138 q22 16 44 0" stroke="#333" fill="none"/>
+      <!-- Tiny teeth vibe -->
+      <path d="M92 132 v6 M100 132 v6 M108 132 v6" stroke="#999"/>
+      <!-- Blush -->
+      <circle cx="68" cy="118" r="6" fill="#ffd2e3" opacity=".8"/>
+      <circle cx="132" cy="118" r="6" fill="#ffd2e3" opacity=".8"/>
+    </svg>
   </div>
 
-  <div class="wrap">
-    <div class="card">
-      <div class="card-header">
-        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-        <div class="title">For my favorite person</div>
-      </div>
-      <div class="stage">
-        <div class="note">I made you a tiny sky, a floating puppy, and a stack of letters. Open them whenever you want. I’m sorry and I love you.</div>
-        <div class="cinnabg">
-          <div class="cinnawrap float">
-            <svg viewBox="0 0 300 300" width="100%" height="100%" aria-label="Cinnamoroll-inspired puppy">
-              <g class="earL"><ellipse cx="60" cy="145" rx="70" ry="28" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/></g>
-              <g class="earR"><ellipse cx="240" cy="145" rx="70" ry="28" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/></g>
-              <ellipse cx="150" cy="140" rx="78" ry="60" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/>
-              <circle cx="125" cy="140" r="6" fill="#7aaeff" />
-              <circle cx="175" cy="140" r="6" fill="#7aaeff" />
-              <path d="M140 155 q10 10 20 0" fill="none" stroke="#7aaeff" stroke-width="4" stroke-linecap="round"/>
-              <ellipse class="blush" cx="108" cy="150" rx="10" ry="6" fill="#ffb7d5"/>
-              <ellipse class="blush" cx="192" cy="150" rx="10" ry="6" fill="#ffb7d5"/>
-              <ellipse cx="150" cy="195" rx="46" ry="32" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/>
-              <circle cx="132" cy="210" r="6" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/>
-              <circle cx="168" cy="210" r="6" fill="#ffffff" stroke="#d7e7ff" stroke-width="3"/>
-            </svg>
-          </div>
-        </div>
-        <div style="text-align:center; margin-top:10px;">
-          <button class="btn" id="openLetters" aria-haspopup="dialog">Open the letters</button>
-        </div>
-      </div>
-      <footer>
-        Made with clouds, cookies, and courage — <span class="signature">by me, for you</span>
-      </footer>
+  <h1>This is youu, heheheh, you're very cute 💖</h1>
+  <p class="lead">I wrote little letters for my cutie. Tap a phase to open a cute pop‑up. Ummmmaaahhh 💋</p>
+
+  <div class="phase-buttons">
+    <button onclick="openPhase('sorry')">Sorry</button>
+    <button onclick="openPhase('love')">Love</button>
+    <button onclick="openPhase('praise')">Praise</button>
+    <button onclick="openPhase('thankyou')">Thank You</button>
+    <button onclick="openPhase('promise')">Promise</button>
+  </div>
+</div>
+
+<!-- Popup / Modal -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="phaseTitle">
+  <div class="modal" role="document">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+      <h2 id="phaseTitle"></h2>
+      <button class="closeX" aria-label="Close" onclick="closeModal()">✖</button>
     </div>
-  </div>
-
-  <div class="popup" id="popup">
-    <div class="win" role="dialog" aria-modal="true" aria-labelledby="wtitle">
-      <div class="winHead">
-        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-        <div id="wtitle" class="title">Letter <span id="idx">1</span>/<span id="total">1</span></div>
+    <div id="poemText" class="poemText"></div>
+    <div class="controls">
+      <div class="left">
+        <button class="btn" onclick="prevPoem()">← Prev</button>
+        <button class="btn" onclick="nextPoem()">Next →</button>
       </div>
-      <div class="winBody">
-        <div class="h1" id="headline">Letter</div>
-        <div class="p" id="bodytext"></div>
-        <div class="actions">
-          <button class="chip" id="prevBtn">Back</button>
-          <button class="chip" id="nextBtn">Next</button>
-        </div>
+      <div class="right">
+        <span id="poemCount" class="chip"></span>
       </div>
     </div>
+    <div class="footer-note">Tap outside or ✖ to close</div>
   </div>
+</div>
 
-  <script>
-    // Apology letters plus extras, written in a natural human voice
-    const letters = [
-      {h: "I am sorry, love", p: "About the knuckle thing(youre cute like this). I should have thought before I let someone touch me like that. I know it made you feel upset and I hate that I caused that feeling."},
-      {h: "You come first", p: "You always come first to me. I should have protected what we have better. I will not let anyone cross that line again."},
-      {h: "I was careless", p: "I let it happen and I regret it. I never want to make you feel small. I will do better and pay attention to what matters to you."},
-      {h: "My promise to you", p: "If there is ever a doubt, I will pick you. I mean it. I want you to feel safe with me always."},
-      {h: "Please forgive me", p: "I hate that I hurt you. Tell me how I can make this up to you and I will do it with all my heart."},
-      {h: "Thank you for loving me", p: "Thank you for loving me even when I mess up. Your love makes me try to be better each day."},
-      {h: "You are my world", p: "You are my world. I can not imagine a life without you in it. Every plan I make has you in it."},
-      {h: "I think about you", p: "Every moment I think about you, sometimes until it feels unhealthy. That only shows how much you mean to me and how much of my heart you hold."},
-      {h: "Silly but true", p: "Sometimes I feel like a dog that only wants food. In this case the food is you. I love you that much and I am not ashamed of it."},
-      {h: "You are perfect to me", p: "I love your eyes, your lips, your laugh and everything about you. Even when you feel insecure, I see someone perfect and I will keep reminding you until you believe it."},
-      // final big letter as the last item, includes paragraphs
-      {h: "Always yours", p: `<p>I just want to say from the bottom of my heart that you are my whole world. I can not imagine waking up and not having you in my life. Thank you for loving me in ways I do not always deserve. Thank you for being my shelter when things feel messy.</p>
-        <p>Some days I think about you so much it becomes all I can think about. Sometimes that feels a little unhealthy, but I think that only proves how deep this is. My thoughts go to your eyes, the way your lips move when you smile, the little things you do that make me fall again and again.</p>
-        <p>I know I make mistakes. I know I have moments when I am careless. I am sorry for hurting you and I will work on being more thoughtful. You mean everything to me and I would move mountains to keep your heart safe.</p>
-        <p>Always yours,</p>
-        <p>💌</p>`}
-    ];
+<script>
+const poems = {
+  sorry:[
+    [
+      "I tripped on words I didn't mean to say,",
+      "and shadows stretched across our day.",
+      "I closed my moth when I should have tried,",
+      "and let small doubts grow wild inside.",
+      "Forgive the awkward hours I made,",
+      "I carried storms I should have laid.",
+      "Your heartbeat taught me how to see,",
+      "that better parts of me could be.",
+      "So here's my had, a softer plea",
+      "I am sorry, please come back to me.",
+      "I'll learn to bend instead of break,",
+      "and weave our calm for both our sake."
+    ],
+    [
+      "Raindrops tapped a guilty song,",
+      "I listened long and answered wrong.",
+      "A careless step, a closing door,",
+      "I know I hurt you, that and more.",
+      "I whisper now with timid light,",
+      "I never meant to dull your bright.",
+      "If patience grows from apologies,",
+      "I'll plant a forest of these pleas.",
+      "Take this small bloom, forgive the thorn,",
+      "For in your warmth, my hert is born.",
+      "I promse change, not hollow show",
+      "Let's re‑learn how our rivers flow."
+    ],
+    [
+      "I owe you words that should have been,",
+      "soft truths I kept beneath my skin.",
+      "I let the silence fill the room,",
+      "and watched our closeness meet its gloom.",
+      "I'm sorry for each foolish pride,",
+      "for all the times I turned aside.",
+      "I'll trade my stubborn for your grace,",
+      "and keep your laugtger in my place.",
+      "Forgive me, love, for every bruise,",
+      "I want to heal, not to excuse.",
+      "Together, stitch the torn and frayed",
+      "we'll wear the mending, not the shade."
+    ],
+    [
+      "Im sorry I let another woman touch your hand,",
+      "a careless moment I never should have planned.",
+      "Your trust is velvet—mine should guard it tight,",
+      "I failed that softness in the open light.",
+      "Im sorry for yelling when I felt insecure,",
+      "for turning fear to fire instead of tender cure.",
+      "No excuse, just tuth and a heart laid bare,",
+      "I want to earn back peace with steady care.",
+      "If healing is slow, Ill match its pace,",
+      "and hold your feelings like the safest place."
+    ],
+    [
+      "I sent a silence where a hug should be,",
+      "and watched the clock outpace you and me.",
+      "I broke a promise made in jest,",
+      "and let small doubts invade our nest.",
+      "Tonight I brng a humble song,",
+      "to right the tiny things gone wrong.",
+      "No grand parade, just steady care,",
+      "I'll meet you in the open air.",
+      "Let this begin, a softer start",
+      "I'll hold the map; please hold my heart."
+    ]
+  ],
+  love:[
+    [
+      "You are the hush before a song,",
+      "the gentle place where I belong.",
+      "Your laugh is light on waking skies,",
+      "a dawn that paints my sleepy eyes.",
+      "In every corner of the day,",
+      "your tiny wonders find their way.",
+      "A cup of tea, a quiet grin",
+      "these are the worlds that pull me in.",
+      "If love is simple, love is true",
+      "my life is softer made by you."
+    ],
+    [
+      "Your freckles map the stars I chase,",
+      "each one a secret, gentle place.",
+      "Your voice tucks worries out of sight,",
+      "and turns the heavy things to light.",
+      "Hold my sleeve, let's wander far,",
+      "we'll count our heartbeats, little star.",
+      "Every day with you is new,",
+      "a small adventure, true and true."
+    ],
+    [
+      "When you sleep, the room feels kind,",
+      "a place where all my edges find.",
+      "You tuck the world into a smile,",
+      "and make the smallest moments file.",
+      "With you, the heavy lifts away,",
+      "and little joys outstretch the day."
+    ],
+    [
+      "I fold my mornngs into you,",
+      "a ribbon neat, a ribbon true.",
+      "Your hand finds mine without a cue,",
+      "and everything feels brave and new.",
+      "No fireworks, just steady flame—",
+      "I'll call your laughter by its name."
+    ],
+    [
+      "You are the pocket of my coat,",
+      "the sun that finds me when I float.",
+      "A tiny note inside my shoe,",
+      "a silly dance I learned from you.",
+      "Stay close, my cutie, soft and near",
+      "I treasure you, I hold you dear."
+    ]
+  ],
+  praise:[
+    [
+      "You make a quiet courage sing,",
+      "a brave small flutter in the spring.",
+      "Your patience blooms like single rose,",
+      "in troubled soil it gently grows.",
+      "You shine without a glaring show",
+      "just steady light that helps me grow."
+    ],
+    [
+      "Your voice untangles knotted doubt,",
+      "and tunes my fears to laughter out.",
+      "You build small briges with your hands,",
+      "and guide me over restless lands."
+    ],
+    [
+      "You hum a tune of steady grace,",
+      "that lights the corners of this place.",
+      "Your tiny habits, bold and bright,",
+      "turn ordinary into light."
+    ],
+    [
+      "You make the messes feel like art,",
+      "a humble, blooming, lovely part.",
+      "Your hands fix things I thought were lost,",
+      "you warm the midnight, pay the cost."
+    ],
+    [
+      "You shine in ways both big and small,",
+      "a lighthouse for when storms befall.",
+      "You teach me love's less spoken art",
+      "to hold, to heal, to never part."
+    ]
+  ],
+  thankyou:[
+    [
+      "Thank you for the tiny lights,",
+      "the sticky notes, the sleepy nights.",
+      "For making soup when days are sore,",
+      "and closing windows, locking door.",
+      "Most of all for today's surprise",
+      "the Hot Wheels and engineering truck track prize!",
+      "You saw the kid inside my grin,",
+      "and revved the joy in me again.",
+      "I wrap my thans in ribbon neat",
+      "and park it gently at your feet."
+    ],
+    [
+      "Thank you for that awesome track,",
+      "curves and ramps that loop and back.",
+      "For tiny truck that race and zoom,",
+      "and turn our table into vroom.",
+      "Your gift built bridges in my chest,",
+      "a golden highway, warm and blessed.",
+      "I love you more than words can show",
+      "you fuel my heart with every glow."
+    ],
+    [
+      "For Hot Wheels lanes that flash and sing,",
+      "for gentle hands that choose the thing",
+      "that makes my inner child awake",
+      "you knew exacly what to make.",
+      "Thank you, love, for gears and tracks",
+      "your thoughtfulness outdrives the max."
+    ],
+    [
+      "Thank you for your steady guide,",
+      "for playful days and cozy pride.",
+      "That engineering track you gave",
+      "you made my whole week super brave.",
+      "I'm grateful, thrilled, and hoding tight",
+      "my heart goes vroom with you each night."
+    ],
+    [
+      "A little car, a little lane,",
+      "became our laughter in the rain.",
+      "Thank you, babe, for wheels and art",
+      "you tuned the engine of my heart."
+    ]
+  ],
+  promise:[
+    [
+      "I promise to learn your quiet ways,",
+      "to meet your eyes and spend our days.",
+      "I'll hold you when the nights are thin,",
+      "and celebrate the ways you win.",
+      "I'll keep small promises like seeds,",
+      "and tend them with our tender deeds."
+    ],
+    [
+      "I promise to be softly true,",
+      "to walk the small miles close to you.",
+      "To breathe before I raise my voice,",
+      "and make your safety my first choice.",
+      "When storms arrive I'll be your shore",
+      "a quiet place and nothing more."
+    ],
+    [
+      "I promise never to repeat",
+      "that hurting scene of thoughtless heat",
+      "no other hand will cross that line,",
+      "your trust is held in hands of mine.",
+      "I'll guard it daily, slow and kind,",
+      "with open heart and steady mind."
+    ],
+    [
+      "I promise space when you need air,",
+      "and tighter hugs when you need care.",
+      "I'll listen close when fears begin,",
+      "and keep your confidence within."
+    ],
+    [
+      "I promise wonder, songs, and play,",
+      "to choose you gently every day.",
+      "Together, promise, hand in had",
+      "we'll make a soft and steady land."
+    ]
+  ]
+};
 
-    // popup logic
-    const popup = document.getElementById('popup');
-    const openBtn = document.getElementById('openLetters');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const headline = document.getElementById('headline');
-    const bodytext = document.getElementById('bodytext');
-    const idxEl = document.getElementById('idx');
-    const totalEl = document.getElementById('total');
+let currentPhase = '';
+let currentPoemIndex = 0;
 
-    let i = 0; totalEl.textContent = letters.length;
+function openPhase(phase){
+  currentPhase = phase;
+  currentPoemIndex = 0;
+  showPoem();
+  openModal();
+}
 
-    function render(){
-      const item = letters[i];
-      headline.textContent = item.h;
-      // allow paragraphs in last letter
-      bodytext.innerHTML = item.p;
-      idxEl.textContent = (i+1);
-      // update button text
-      if(i === letters.length - 1){ nextBtn.textContent = 'Close'; } else { nextBtn.textContent = 'Next'; }
-    }
+function openModal(){
+  const overlay = document.getElementById('overlay');
+  overlay.classList.add('show');
+}
+function closeModal(){
+  document.getElementById('overlay').classList.remove('show');
+}
 
-    function open(){ popup.classList.add('active'); render(); }
-    function close(){ popup.classList.remove('active'); }
+document.getElementById('overlay').addEventListener('click', (e)=>{
+  if(e.target.id === 'overlay') closeModal();
+});
 
-    openBtn.addEventListener('click', open);
+function showPoem(){
+  if(!poems[currentPhase]) return;
+  const title = currentPhase.charAt(0).toUpperCase() + currentPhase.slice(1) + ' Letter';
+  document.getElementById('phaseTitle').textContent = title;
+  document.getElementById('poemText').textContent = poems[currentPhase][currentPoemIndex].join('\n');
+  document.getElementById('poemCount').textContent = `Poem ${currentPoemIndex + 1} / ${poems[currentPhase].length}`;
+}
 
-    nextBtn.addEventListener('click', ()=>{
-      if(i < letters.length - 1){ i = i + 1; render(); if(i === letters.length - 1){ setTimeout(() => confetti(), 120); } }
-      else { close(); }
-    });
-
-    prevBtn.addEventListener('click', ()=>{ i = Math.max(0, i-1); render(); });
-
-    popup.addEventListener('click', (e)=>{ if(e.target === popup) close(); });
-
-    // floating sparkles & hearts from before
-    function spawnFloating(){
-      const sky = document.querySelector('.sky');
-      if(!sky) return;
-      const n = 12;
-      for(let k=0;k<n;k++){
-        const el = document.createElement('div');
-        el.className = Math.random() > 0.5 ? 'sparkle heart' : 'sparkle';
-        el.style.left = Math.random()*100 + 'vw';
-        el.style.bottom = (-10 + Math.random()*20) + 'vh';
-        el.style.animationDelay = (Math.random()*8)+'s';
-        el.style.opacity = .5 + Math.random()*.5;
-        el.style.transform = `scale(${.6+Math.random()*.9})`;
-        sky.appendChild(el);
-        setTimeout(()=> el.remove(), 10000);
-      }
-    }
-    setInterval(spawnFloating, 1400);
-    spawnFloating();
-
-    // confetti for final letter
-    function confetti(){
-      for(let k=0;k<36;k++){
-        const s = document.createElement('div');
-        s.className = Math.random() > 0.5 ? 'sparkle heart' : 'sparkle';
-        s.style.left = (50 + (Math.random()*30 - 15)) + 'vw';
-        s.style.bottom = (30 + Math.random()*20) + 'vh';
-        s.style.animationDuration = (6 + Math.random()*4) + 's';
-        document.body.appendChild(s);
-        setTimeout(()=> s.remove(), 11000);
-      }
-    }
-
-    // accessibility
-    openBtn.addEventListener('keyup', (e)=>{ if(e.key === 'Enter' || e.key === ' ') open(); });
-
-  </script>
+function nextPoem(){
+  if(!poems[currentPhase]) return;
+  currentPoemIndex = (currentPoemIndex + 1) % poems[currentPhase].length;
+  showPoem();
+}
+function prevPoem(){
+  if(!poems[currentPhase]) return;
+  currentPoemIndex = (currentPoemIndex - 1 + poems[currentPhase].length) % poems[currentPhase].length;
+  showPoem();
+}
+</script>
 </body>
 </html>
